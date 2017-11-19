@@ -1,0 +1,20 @@
+#!/usr/bin/env groovy
+
+@Grapes( 
+    @Grab(group='com.github.moaxcp', module='graph-dsl', version='0.22.0-feature.dot-view.2+sha.e6eb05c.dirty') 
+)
+
+import graph.*
+
+@groovy.transform.BaseScript DslScript graph
+edge A, B
+
+assert graph.edges.size() == 1
+assert graph.edges.first().one == 'A'
+assert graph.edges.first().two == 'B'
+assert graph.vertices.size() == 2
+assert graph.vertices.A.key == 'A'
+assert graph.vertices.B.key == 'B'
+graph.view()
+println graph.vertices
+println graph.dot.name
